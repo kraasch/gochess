@@ -26,6 +26,8 @@ List of features
     - [ ] implement CLI foreground colors for pieces (in black and white).
     - [ ] have a flag for **textual** mode: RNBQKBNR pppppppp
     - [ ] have a flag for **graphical** mode: RNBQKBNR pppppppp
+    - [ ] flip the sides of the board option.
+    - [ ] undo history.
   - must: check moves.
     - [ ] have a flag for **manual** mode: all moves allowed.
     - [ ] have a flag for **turns** mode: moves must follow turns.
@@ -33,6 +35,7 @@ List of features
     - [ ] have a option for turning off **castling** mode: disallow castling at all.
     - [ ] have a option for turning on **attacked** mode: sallow castling through attacked squares.
     - [ ] have a option for turning off **en-passant** mode: disallow en-passants.
+    - [ ] have a option for turning off **undos** mode: disallow undos.
   - next.
     - [ ] implement timer.
     - [ ] implement piece value display.
