@@ -19,6 +19,8 @@ List of features
 
 List of things to do
 
+  - next.
+    - [ ] have a console to type commands in, ie `7a5a` to move local piece from field 7a to field 5a.
   - features.
     - [ ] flip the sides of the board option.
     - [ ] undo history.
