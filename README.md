@@ -19,7 +19,25 @@ Demo GIF:
 
 List of features
 
-  - [ ] xxx
+  - style.
+    - [ ] have a flag for **textual** mode: RNBQKBNR pppppppp
+    - [ ] have a flag for **graphical** mode: RNBQKBNR pppppppp
+  - check moves.
+    - [ ] have a flag for **manual** mode: all moves allowed.
+    - [ ] have a flag for **turns** mode: moves must follow turns.
+    - [ ] have a flag for **checked** mode: all moves must be legal.
+    - [ ] have a option for turning off **castling** mode: disallow castling at all.
+    - [ ] have a option for turning on **attacked** mode: sallow castling through attacked squares.
+    - [ ] have a option for turning off **en-passant** mode: disallow en-passants.
+  - next.
+    - [ ] implement timer.
+    - [ ] implement piece value display.
+    - [ ] implement simple computer player (ie AI enemy).
+  - extras.
+    - [ ] allow new pieces, like the duck (moves everywhere, cannot be beat, blocks all attacks, is moved by both players, duck does not move, if move opens a new attack on the enemy player).
+    - [ ] allow randomized starting positions.
+    - [ ] allow randomized piece values (white and black adding up to the same total).
+    - [ ] allow randomized piece values (white and black adding up to differing totals).
 
 ## Tasks
 
