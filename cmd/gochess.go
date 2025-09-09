@@ -56,7 +56,7 @@ func (m model) View() string {
 	var str string
 	// if verbose { // TODO: implement flags.
 	// }
-	str = engine.ChessBoard("standard")
+	str = engine.ChessBoard("color")
 	str = styleBox.Render(str)
 	return lip.Place(m.width, m.height, lip.Center, lip.Center, str)
 }

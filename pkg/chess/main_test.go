@@ -12,14 +12,6 @@ import (
 	"github.com/kraasch/godiff/godiff"
 )
 
-const (
-	PW = "\x1b[1;38;2;255;0;0m"     // PW = player white, ANSI foreground color (= red).
-	PB = "\x1b[1;38;2;100;100;100m" // PB = player black, ANSI foreground color (= gray).
-	BW = "\x1b[1;38;2;100;100;100m" // BW = board white, ANSI background color (= white).
-	BB = "\x1b[48;5;56m"            // BB = board black, ANSI background color (= purple).
-	N  = "\x1b[0m"                  // ANSI clear formatting.
-)
-
 var NL = fmt.Sprintln()
 
 type TestList struct {
@@ -46,7 +38,7 @@ var suites = []TestSuite{
 		},
 		tests: []TestList{
 			{
-				testName: "category_description_number00",
+				testName: "board-design_print-as-text+no-formatting_00",
 				isMulti:  false,
 				inputArr: []string{"standard"},
 				expectedValue: // this comment prevents start of string literal here.
@@ -59,6 +51,22 @@ var suites = []TestSuite{
 					"3          3" + NL +
 					"2 PPPPPPPP 2" + NL +
 					"1 RNBQKBNR 1" + NL +
+					"  abcdefgh  ",
+			},
+			{
+				testName: "board-design_print-as-text+with-color_00",
+				isMulti:  false,
+				inputArr: []string{"color"},
+				expectedValue: // this comment prevents start of string literal here.
+				"  abcdefgh  " + NL +
+					"8 " + BW + "r" + BB + "n" + BW + "b" + BB + "q" + BW + "k" + BB + "b" + BW + "n" + BB + "r" + N + " 8" + NL +
+					"7 " + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + N + " 7" + NL +
+					"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL +
+					"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL +
+					"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL +
+					"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL +
+					"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL +
+					"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL +
 					"  abcdefgh  ",
 			},
 		},
