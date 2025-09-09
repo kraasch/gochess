@@ -15,7 +15,15 @@ const (
 	BB    = "\x1b[40m"   // BB = board black, ANSI color.
 	N     = "\x1b[0m"    // ANSI clear formatting.
 	NL2   = "\n"         // TODO: generalize end-of-line sequence.
-	board = "  abcdefgh  " + NL2 +
+	start = "rnbqkbnr" + NL2 +
+		"pppppppp" + NL2 +
+		"        " + NL2 +
+		"        " + NL2 +
+		"        " + NL2 +
+		"        " + NL2 +
+		"PPPPPPPP" + NL2 +
+		"RNBQKBNR"
+	board = "  abcdefgh  " + NL2 + /// TODO: remove this variable.
 		"8 rnbqkbnr 8" + NL2 +
 		"7 pppppppp 7" + NL2 +
 		"6          6" + NL2 +
@@ -25,7 +33,7 @@ const (
 		"2 PPPPPPPP 2" + NL2 +
 		"1 RNBQKBNR 1" + NL2 +
 		"  abcdefgh  "
-	board2 = "  abcdefgh  " + NL2 +
+	board2 = "  abcdefgh  " + NL2 + /// TODO: remove this variable.
 		"8 " + BW + "r" + BB + "n" + BW + "b" + BB + "q" + BW + "k" + BB + "b" + BW + "n" + BB + "r" + N + " 8" + NL2 +
 		"7 " + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + N + " 7" + NL2 +
 		"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL2 +
@@ -62,7 +70,13 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
-func ChessBoard(in string) string {
+func ChessBoard() string {
+	// str := Format(start, "pieces") // TODO: add this as the inner part of board2.
+	str := fmt.Sprintf("%v", board2)
+	return str
+}
+
+func Color(in string) string {
 	str := ""
 	if in == "standard" {
 		str = fmt.Sprintf("%v", board)

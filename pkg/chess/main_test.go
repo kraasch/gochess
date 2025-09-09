@@ -40,7 +40,7 @@ var suites = []TestSuite{
 		tests: []TestList{
 			{
 				// turn in to these: ♔♕♖♗♘♙ ♚♛♜♝♞♟
-				testName: "board-formatting_convert-characters_00",
+				testName: "board-inner_convert-characters_00",
 				isMulti:  false,
 				inputArr: []string{
 					"rnbqkbnr" + NL +
@@ -65,18 +65,19 @@ var suites = []TestSuite{
 			},
 		},
 	},
+
 	/*
-	 * Test for the function ChessBoard -- for formatting the outer board.
+	 * Test for the function Color -- for formatting the outer board.
 	 */
 	{
 		testingFunction: func(in TestList) (out string) {
 			inputValue := in.inputArr[0]
-			out = ChessBoard(inputValue)
+			out = Color(inputValue)
 			return
 		},
 		tests: []TestList{
 			{
-				testName: "board-design_print-as-text+no-formatting_00",
+				testName: "board-outer_print-as-text+no-formatting_00",
 				isMulti:  false,
 				inputArr: []string{"standard"},
 				expectedValue: // this comment prevents start of string literal here.
@@ -92,7 +93,35 @@ var suites = []TestSuite{
 					"  abcdefgh  ",
 			},
 			{
-				testName: "board-formatting_print-as-text+with-color_00",
+				testName: "board-outer_print-as-text+with-color_00",
+				isMulti:  false,
+				inputArr: []string{"color"},
+				expectedValue: // this comment prevents start of string literal here.
+				"  abcdefgh  " + NL +
+					"8 " + BW + "r" + BB + "n" + BW + "b" + BB + "q" + BW + "k" + BB + "b" + BW + "n" + BB + "r" + N + " 8" + NL +
+					"7 " + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + N + " 7" + NL +
+					"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL +
+					"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL +
+					"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL +
+					"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL +
+					"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL +
+					"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL +
+					"  abcdefgh  ",
+			},
+		},
+	},
+
+	/*
+	 * Test for the function ChessBoard -- for creating a chessboard.
+	 */
+	{
+		testingFunction: func(in TestList) (out string) {
+			out = ChessBoard()
+			return
+		},
+		tests: []TestList{
+			{
+				testName: "create-full-board_simple-board_00",
 				isMulti:  false,
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.
