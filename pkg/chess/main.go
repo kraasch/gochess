@@ -43,6 +43,16 @@ const (
 		"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL2 +
 		"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL2 +
 		"  abcdefgh  "
+	board3 = "  abcdefgh  " + NL2 +
+		"8 " + BW + "♖" + BB + "♘" + BW + "♗" + BB + "♕" + BW + "♔" + BB + "♗" + BW + "♘" + BB + "♖" + N + " 8" + NL2 +
+		"7 " + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + N + " 7" + NL2 +
+		"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL2 +
+		"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL2 +
+		"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL2 +
+		"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL2 +
+		"2 " + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + N + " 2" + NL2 +
+		"1 " + BB + "♜" + BW + "♞" + BB + "♝" + BW + "♛" + BB + "♚" + BW + "♝" + BB + "♞" + BW + "♜" + N + " 1" + NL2 +
+		"  abcdefgh  "
 )
 
 func Format(inputBoard, format string) string {
@@ -71,17 +81,19 @@ func Format(inputBoard, format string) string {
 }
 
 func ChessBoard() string {
-	// str := Format(start, "pieces") // TODO: add this as the inner part of board2.
-	str := fmt.Sprintf("%v", board2)
+	str := Format(start, "pieces") // TODO: add this as the inner part of board2.
+	str = Color(str, "entire")
 	return str
 }
 
-func Color(in string) string {
+func Color(in, mode string) string {
 	str := ""
-	if in == "standard" {
+	if mode == "standard" {
 		str = fmt.Sprintf("%v", board)
-	} else if in == "color" {
+	} else if mode == "color" {
 		str = fmt.Sprintf("%v", board2)
+	} else if mode == "entire" {
+		str = fmt.Sprintf("%v", board3)
 	}
 	return str
 }
