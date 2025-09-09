@@ -28,7 +28,45 @@ type TestSuite struct {
 
 var suites = []TestSuite{
 	/*
-	 * Test for the function Toast().
+	 * Test for the function Format-- for formatting the inner board.
+	 */
+	{
+		testingFunction: func(in TestList) (out string) {
+			board := in.inputArr[0]
+			format := in.inputArr[1]
+			out = Format(board, format)
+			return
+		},
+		tests: []TestList{
+			{
+				// turn in to these: ♔♕♖♗♘♙ ♚♛♜♝♞♟
+				testName: "board-formatting_convert-characters_00",
+				isMulti:  false,
+				inputArr: []string{
+					"rnbqkbnr" + NL +
+						"pppppppp" + NL +
+						"        " + NL +
+						"        " + NL +
+						"        " + NL +
+						"        " + NL +
+						"PPPPPPPP" + NL +
+						"RNBQKBNR",
+					"pieces",
+				},
+				expectedValue: // this comment prevents start of string literal here.
+				"♖♘♗♕♔♗♘♖" + NL +
+					"♙♙♙♙♙♙♙♙" + NL +
+					"        " + NL +
+					"        " + NL +
+					"        " + NL +
+					"        " + NL +
+					"♟♟♟♟♟♟♟♟" + NL +
+					"♜♞♝♛♚♝♞♜",
+			},
+		},
+	},
+	/*
+	 * Test for the function ChessBoard -- for formatting the outer board.
 	 */
 	{
 		testingFunction: func(in TestList) (out string) {
@@ -54,7 +92,7 @@ var suites = []TestSuite{
 					"  abcdefgh  ",
 			},
 			{
-				testName: "board-design_print-as-text+with-color_00",
+				testName: "board-formatting_print-as-text+with-color_00",
 				isMulti:  false,
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.

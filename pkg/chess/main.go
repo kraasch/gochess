@@ -5,6 +5,10 @@ import (
 )
 
 const (
+	// from https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
+	// ♔♕♖♗♘♙
+	// ♚♛♜♝♞♟
+	// 🨀🨁🨂🨃🨄🨅🨆🨇🨈🨉🨊🨋🨌🨍🨎🨏🨐🨑🨒🨓🨔🨕🨖🨗🨘🨙🨚🨛🨜🨝🨞🨟🨠🨡🨢🨣🨤🨥🨦🨧🨨🨩🨪🨫🨬🨭🨮🨯🨰🨱🨲🨳🨴🨵🨶🨷🨸🨹🨺🨻🨼🨽🨾🨿🩀🩁🩂🩃🩄🩅🩆🩇🩈🩉🩊🩋🩌🩍🩎🩏🩐🩑🩒🩓
 	PW    = "\x1b[0;36m" // PW = player white, ANSI color.
 	PB    = "\x1b[0;31m" // PB = player black, ANSI color.
 	BW    = "\x1b[47m"   // BW = board white, ANSI color.
@@ -32,6 +36,31 @@ const (
 		"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL2 +
 		"  abcdefgh  "
 )
+
+func Format(inputBoard, format string) string {
+	str := ""
+	if format == "pieces" {
+		// Make "KQRBNPkqrbnp" into "♚♛♜♝♞♟♔♕♖♗♘♙".
+		str1 := "KQRBNPkqrbnp"
+		str2 := "♚♛♜♝♞♟♔♕♖♗♘♙"
+		runes := []rune(str2)
+		// loop over every character and replace.
+		for _, currentRune := range inputBoard {
+			found := ""
+			for i, r := range str1 {
+				if r == currentRune {
+					found = string(runes[i])
+				}
+			}
+			if found != "" {
+				str += found
+			} else {
+				str += string(currentRune)
+			}
+		}
+	}
+	return str
+}
 
 func ChessBoard(in string) string {
 	str := ""
