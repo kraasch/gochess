@@ -9,17 +9,17 @@ Demo picture:
   <img src="./resources/example.png" width="300"/>
 </p>
 
-Demo GIF:
-
-<p align="center">
-  <img src="./resources/demo.gif" width="300"/>
-</p>
-
 ## Features
 
 List of features
 
-  - must: general.
+  - [ ] xxx
+
+## Tasks
+
+List of things to do
+
+  - next
     - [ ] xxx
   - must: style.
     - [ ] implement CLI background color checkered board in black and white.
@@ -36,27 +36,19 @@ List of features
     - [ ] have a option for turning on **attacked** mode: sallow castling through attacked squares.
     - [ ] have a option for turning off **en-passant** mode: disallow en-passants.
     - [ ] have a option for turning off **undos** mode: disallow undos.
-  - next.
+  - then.
     - [ ] implement timer.
     - [ ] implement piece value display.
     - [ ] implement simple computer player (ie AI enemy).
     - [ ] option to customize background colors.
     - [ ] option to customize foreground colors.
-  - extras.
-    - [ ] allow new pieces, like the duck (moves everywhere, cannot be beat, blocks all attacks, is moved by both players, duck does not move, if move opens a new attack on the enemy player).
-    - [ ] allow randomized starting positions.
-    - [ ] allow randomized piece values (white and black adding up to the same total).
-    - [ ] allow randomized piece values (white and black adding up to differing totals).
-
-## Tasks
-
-List of things to do
-
-  - [ ] xxx
 
 List of ideas
 
-  - [ ] xxx
+  - [ ] allow new pieces, like the duck (moves everywhere, cannot be beat, blocks all attacks, is moved by both players, duck does not move, if move opens a new attack on the enemy player).
+  - [ ] allow randomized starting positions.
+  - [ ] allow randomized piece values (white and black adding up to the same total).
+  - [ ] allow randomized piece values (white and black adding up to differing totals).
 
 ## Installation
 
