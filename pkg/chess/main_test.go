@@ -1,77 +1,80 @@
-
 package chess
 
 import (
 
-  // this is a test.
-  "testing"
+	// this is a test.
+	"testing"
 
-  // printing and formatting.
-  "fmt"
+	// printing and formatting.
+	"fmt"
 
-  // other imports.
-  "github.com/kraasch/godiff/godiff"
+	// other imports.
+	"github.com/kraasch/godiff/godiff"
 )
 
-var (
-  NL = fmt.Sprintln()
-)
+var NL = fmt.Sprintln()
 
 type TestList struct {
-  testName          string
-  isMulti           bool
-  inputArr          []string
-  inputArr2         []string
-  expectedValue     string
+	testName      string
+	isMulti       bool
+	inputArr      []string
+	inputArr2     []string
+	expectedValue string
 }
 
 type TestSuite struct {
-  testingFunction   func(in TestList) string
-  tests             []TestList
+	testingFunction func(in TestList) string
+	tests           []TestList
 }
 
 var suites = []TestSuite{
-  /*
-  * Test for the function Toast().
-  */
-  {
-    testingFunction:
-    func(in TestList) (out string) {
-      inputValue := in.inputArr[0]
-      out = Toast(inputValue)
-      return
-    },
-    tests:
-    []TestList{
-      {
-        testName:      "category_description_number00",
-        isMulti:       false,
-        inputArr:      []string{"is nice!"},
-        expectedValue: "\"Toast: is nice!\"",
-      },
-    },
-  },
+	/*
+	 * Test for the function Toast().
+	 */
+	{
+		testingFunction: func(in TestList) (out string) {
+			inputValue := in.inputArr[0]
+			out = ChessBoard(inputValue)
+			return
+		},
+		tests: []TestList{
+			{
+				testName: "category_description_number00",
+				isMulti:  false,
+				inputArr: []string{"standard"},
+				expectedValue: "  abcdefgh  " + NL +
+					"8 RNBQKBNR 8" + NL +
+					"7 pppppppp 7" + NL +
+					"6          6" + NL +
+					"5          5" + NL +
+					"4          4" + NL +
+					"3          3" + NL +
+					"2 pppppppp 2" + NL +
+					"1 RNBQKBNR 1" + NL +
+					"  abcdefgh  ",
+			},
+		},
+	},
 }
 
 func TestAll(t *testing.T) {
-  for _, suite := range suites {
-    for _, test := range suite.tests {
-      name := test.testName
-      t.Run(name, func(t *testing.T) {
-        exp := test.expectedValue
-        got := suite.testingFunction(test)
-        if exp != got {
-          if test.isMulti {
-            t.Errorf("In '%s':\n", name)
-            diff := godiff.CDiff(exp, got)
-            t.Errorf("\nExp: '%#v'\nGot: '%#v'\n", exp, got)
-            t.Errorf("exp/got:\n%s\n", diff)
-          } else {
-            t.Errorf("In '%s':\n  Exp: '%#v'\n  Got: '%#v'\n", name, exp, got)
-          }
-        }
-      })
-    }
-  }
+	for _, suite := range suites {
+		for _, test := range suite.tests {
+			name := test.testName
+			t.Run(name, func(t *testing.T) {
+				exp := test.expectedValue
+				got := suite.testingFunction(test)
+				if exp != got {
+					if test.isMulti {
+						t.Errorf("In '%s':\n", name)
+						diff := godiff.CDiff(exp, got)
+						t.Errorf("\nExp: '%#v'\nGot: '%#v'\n", exp, got)
+						t.Errorf("exp/got:\n%s\n", diff)
+					} else {
+						t.Errorf("In '%s':\n  Exp: '%#v'\n  Got: '%#v'\n", name, exp, got)
+					}
+				}
+			})
+		}
+	}
 }
-
