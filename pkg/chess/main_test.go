@@ -97,16 +97,16 @@ var suites = []TestSuite{
 				isMulti:  false,
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.
-				"  abcdefgh  " + NL +
-					"8 " + BW + "r" + BB + "n" + BW + "b" + BB + "q" + BW + "k" + BB + "b" + BW + "n" + BB + "r" + N + " 8" + NL +
-					"7 " + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + N + " 7" + NL +
-					"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL +
-					"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL +
-					"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL +
-					"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL +
-					"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL +
-					"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL +
-					"  abcdefgh  ",
+				"   a b c d e f g h  " + NL +
+					"8 " + BW + " r" + BB + " n" + BW + " b" + BB + " q" + BW + " k" + BB + " b" + BW + " n" + BB + " r" + N + " 8" + NL +
+					"7 " + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + N + " 7" + NL +
+					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
+					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
+					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
+					"2 " + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + N + " 2" + NL +
+					"1 " + BB + " R" + BW + " N" + BB + " B" + BW + " Q" + BB + " K" + BW + " B" + BB + " N" + BW + " R" + N + " 1" + NL +
+					"   a b c d e f g h  ",
 			},
 		},
 	},
@@ -125,16 +125,16 @@ var suites = []TestSuite{
 				isMulti:  false,
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.
-				"  abcdefgh  " + NL +
-					"8 " + BW + "♖" + BB + "♘" + BW + "♗" + BB + "♕" + BW + "♔" + BB + "♗" + BW + "♘" + BB + "♖" + N + " 8" + NL +
-					"7 " + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + N + " 7" + NL +
-					"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL +
-					"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL +
-					"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL +
-					"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL +
-					"2 " + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + N + " 2" + NL +
-					"1 " + BB + "♜" + BW + "♞" + BB + "♝" + BW + "♛" + BB + "♚" + BW + "♝" + BB + "♞" + BW + "♜" + N + " 1" + NL +
-					"  abcdefgh  ",
+				"   a b c d e f g h  " + NL +
+					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
+					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
+					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
+					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
+					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
+					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"   a b c d e f g h  ",
 			},
 		},
 	},

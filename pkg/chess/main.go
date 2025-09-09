@@ -33,26 +33,26 @@ const (
 		"2 PPPPPPPP 2" + NL2 +
 		"1 RNBQKBNR 1" + NL2 +
 		"  abcdefgh  "
-	board2 = "  abcdefgh  " + NL2 + /// TODO: remove this variable.
-		"8 " + BW + "r" + BB + "n" + BW + "b" + BB + "q" + BW + "k" + BB + "b" + BW + "n" + BB + "r" + N + " 8" + NL2 +
-		"7 " + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + BB + "p" + BW + "p" + N + " 7" + NL2 +
-		"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL2 +
-		"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL2 +
-		"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL2 +
-		"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL2 +
-		"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL2 +
-		"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL2 +
-		"  abcdefgh  "
-	board3 = "  abcdefgh  " + NL2 + // TODO: remove this variable.
-		"8 " + BW + "♖" + BB + "♘" + BW + "♗" + BB + "♕" + BW + "♔" + BB + "♗" + BW + "♘" + BB + "♖" + N + " 8" + NL2 +
-		"7 " + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + N + " 7" + NL2 +
-		"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL2 +
-		"5 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 5" + NL2 +
-		"4 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 4" + NL2 +
-		"3 " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + N + " 3" + NL2 +
-		"2 " + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + BW + "♟" + BB + "♟" + N + " 2" + NL2 +
-		"1 " + BB + "♜" + BW + "♞" + BB + "♝" + BW + "♛" + BB + "♚" + BW + "♝" + BB + "♞" + BW + "♜" + N + " 1" + NL2 +
-		"  abcdefgh  "
+	board2 = "   a b c d e f g h  " + NL2 + /// TODO: remove this variable.
+		"8 " + BW + " r" + BB + " n" + BW + " b" + BB + " q" + BW + " k" + BB + " b" + BW + " n" + BB + " r" + N + " 8" + NL2 +
+		"7 " + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + N + " 7" + NL2 +
+		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
+		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
+		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
+		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
+		"2 " + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + N + " 2" + NL2 +
+		"1 " + BB + " R" + BW + " N" + BB + " B" + BW + " Q" + BB + " K" + BW + " B" + BB + " N" + BW + " R" + N + " 1" + NL2 +
+		"   a b c d e f g h  "
+	board3 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
+		"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL2 +
+		"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL2 +
+		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
+		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
+		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
+		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
+		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
+		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
+		"   a b c d e f g h  "
 )
 
 func Format(inputBoard, format string) string {
