@@ -19,10 +19,14 @@ Demo GIF:
 
 List of features
 
-  - style.
+  - must: general.
+    - [ ] xxx
+  - must: style.
+    - [ ] implement CLI background color checkered board in black and white.
+    - [ ] implement CLI foreground colors for pieces (in black and white).
     - [ ] have a flag for **textual** mode: RNBQKBNR pppppppp
     - [ ] have a flag for **graphical** mode: RNBQKBNR pppppppp
-  - check moves.
+  - must: check moves.
     - [ ] have a flag for **manual** mode: all moves allowed.
     - [ ] have a flag for **turns** mode: moves must follow turns.
     - [ ] have a flag for **checked** mode: all moves must be legal.
@@ -33,6 +37,8 @@ List of features
     - [ ] implement timer.
     - [ ] implement piece value display.
     - [ ] implement simple computer player (ie AI enemy).
+    - [ ] option to customize background colors.
+    - [ ] option to customize foreground colors.
   - extras.
     - [ ] allow new pieces, like the duck (moves everywhere, cannot be beat, blocks all attacks, is moved by both players, duck does not move, if move opens a new attack on the enemy player).
     - [ ] allow randomized starting positions.
