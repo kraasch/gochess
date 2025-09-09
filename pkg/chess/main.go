@@ -43,7 +43,7 @@ const (
 		"2 " + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + BW + "P" + BB + "P" + N + " 2" + NL2 +
 		"1 " + BB + "R" + BW + "N" + BB + "B" + BW + "Q" + BB + "K" + BW + "B" + BB + "N" + BW + "R" + N + " 1" + NL2 +
 		"  abcdefgh  "
-	board3 = "  abcdefgh  " + NL2 +
+	board3 = "  abcdefgh  " + NL2 + // TODO: remove this variable.
 		"8 " + BW + "♖" + BB + "♘" + BW + "♗" + BB + "♕" + BW + "♔" + BB + "♗" + BW + "♘" + BB + "♖" + N + " 8" + NL2 +
 		"7 " + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + BB + "♙" + BW + "♙" + N + " 7" + NL2 +
 		"6 " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + BW + " " + BB + " " + N + " 6" + NL2 +
