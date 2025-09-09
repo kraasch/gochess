@@ -12,13 +12,20 @@ import (
 	"github.com/kraasch/godiff/godiff"
 )
 
+const (
+	PW = "\x1b[1;38;2;255;0;0m"     // PW = player white, ANSI foreground color (= red).
+	PB = "\x1b[1;38;2;100;100;100m" // PB = player black, ANSI foreground color (= gray).
+	BW = "\x1b[1;38;2;100;100;100m" // BW = board white, ANSI background color (= white).
+	BB = "\x1b[48;5;56m"            // BB = board black, ANSI background color (= purple).
+	N  = "\x1b[0m"                  // ANSI clear formatting.
+)
+
 var NL = fmt.Sprintln()
 
 type TestList struct {
 	testName      string
 	isMulti       bool
 	inputArr      []string
-	inputArr2     []string
 	expectedValue string
 }
 
@@ -42,14 +49,15 @@ var suites = []TestSuite{
 				testName: "category_description_number00",
 				isMulti:  false,
 				inputArr: []string{"standard"},
-				expectedValue: "  abcdefgh  " + NL +
-					"8 RNBQKBNR 8" + NL +
+				expectedValue: // this comment prevents start of string literal here.
+				"  abcdefgh  " + NL +
+					"8 rnbqkbnr 8" + NL +
 					"7 pppppppp 7" + NL +
 					"6          6" + NL +
 					"5          5" + NL +
 					"4          4" + NL +
 					"3          3" + NL +
-					"2 pppppppp 2" + NL +
+					"2 PPPPPPPP 2" + NL +
 					"1 RNBQKBNR 1" + NL +
 					"  abcdefgh  ",
 			},
