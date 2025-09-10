@@ -200,6 +200,36 @@ var suites = []TestSuite{
 			},
 		},
 	},
+
+	/*
+	 * Test for Move() -- move pieces on the board.
+	 */
+	{
+		testingFunction: func(in TestList) string {
+			cb := NewBoardNew()
+			cb.Move("a7a6")
+			out := cb.Display()
+			return out
+		},
+		tests: []TestList{
+			{
+				testName: "create-full-board_complex-board_move_00",
+				isMulti:  true,
+				inputArr: []string{"color"},
+				expectedValue: // this comment prevents start of string literal here.
+				"   a b c d e f g h  " + NL +
+					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
+					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
+					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
+					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
+					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
+					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"   a b c d e f g h  ",
+			},
+		},
+	},
 }
 
 func TestAll(t *testing.T) {

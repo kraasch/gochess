@@ -2,11 +2,24 @@ package chess
 
 import (
 	"fmt"
+
+	ctrl "github.com/kraasch/gochess/pkg/chessctrl" // TODO: import control module.
 )
 
 type Chessboard struct {
 	Board   string
 	Flipped bool
+}
+
+func NewBoardNew() Chessboard { // TODO: make the only contructur. (and rename it of course)
+	str := Format(start, "filled") // TODO: add this as the inner part of board2.
+	return Chessboard{str, false}
+}
+
+func NewBoard() Chessboard { // TODO: remove this.
+	str := Format(start, "filled") // TODO: add this as the inner part of board2.
+	str = Color(str, "entire")
+	return Chessboard{str, false}
 }
 
 func (cb *Chessboard) Flip() {
@@ -23,6 +36,10 @@ func (cb *Chessboard) Display() string {
 	} else {
 		return board3
 	}
+}
+
+func (cb *Chessboard) Move(move string) {
+	ctrl.Move(&cb.Board, move)
 }
 
 const (
@@ -123,12 +140,6 @@ func Format(inputBoard, format string) string {
 		}
 	}
 	return str
-}
-
-func NewBoard() Chessboard {
-	str := Format(start, "filled") // TODO: add this as the inner part of board2.
-	str = Color(str, "entire")
-	return Chessboard{str, false}
 }
 
 func Color(in, mode string) string {
