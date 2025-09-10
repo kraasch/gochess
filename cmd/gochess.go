@@ -60,7 +60,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			text := m.textInput.Value()
 
 			////////////////////////////////////////////////////////////
-			// BEGIN TODO: let input be handled by a module called 'chessctrl'.
+			// BEGIN
+			// TODO: MAYBE let input be handled by a module called 'chessctrl'.
 			// TODO: test as a separate module.
 			// TODO: flip results in flipped board.
 			// TODO: move results in change (test different options: castling, en-passant, etc)
