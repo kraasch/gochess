@@ -70,11 +70,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			////////////////////////////////////////////////////////////
 			switch moveInput {
 			case "t", "test": // TODO: remove later. this is for running tests.
-				m.cb.Move("a7a6")
+				m.cb.Move("h7h6")
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "running test."
 				bbbb = m.cb.Board
-				return m, tea.Quit
+				return m, nil // NOTE: this should update the view.
 			case "s", "save":
 				// TODO: implement.
 				m.textInput.SetValue("")
@@ -101,7 +101,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.cb.Move(moveInput) // TODO: implement: move the piece.
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "moving..."
-					return m, nil // NOTE: this should update the view.
+					bbbb = m.cb.Board // TODO: remove.
+					return m, nil     // NOTE: this should update the view.
 				} else {
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "invalid command"

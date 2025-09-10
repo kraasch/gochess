@@ -12,8 +12,7 @@ type Chessboard struct {
 }
 
 func NewBoardNew() Chessboard { // TODO: make the only contructur. (and rename it of course)
-	str := Format(start, "filled")
-	return Chessboard{str, false}
+	return Chessboard{start, false}
 }
 
 func NewBoard() Chessboard { // TODO: remove this.
@@ -34,7 +33,9 @@ func (cb *Chessboard) Display() string {
 	if cb.Flipped {
 		return flipped0
 	} else {
-		return board3
+		str := Format(cb.Board, "filled")
+		str = Color(str, "entire")
+		return str
 	}
 }
 
