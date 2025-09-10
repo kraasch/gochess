@@ -58,7 +58,26 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.Type {
 		case tea.KeyEnter:
 			text := m.textInput.Value()
+
+			////////////////////////////////////////////////////////////
+			// BEGIN TODO: let input be handled by a module called 'chessctrl'.
+			// TODO: test as a separate module.
+			// TODO: flip results in flipped board.
+			// TODO: move results in change (test different options: castling, en-passant, etc)
+			////////////////////////////////////////////////////////////
 			switch text {
+			case "s", "save":
+				// TODO: implement.
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "implement: save"
+			case "l", "load":
+				// TODO: implement.
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "implement: load"
+			case "f", "flip":
+				// TODO: implement: flip the view.
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "implement: flip"
 			case "h", "help":
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "move: a7a6 quit: q"
@@ -72,11 +91,16 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if regex.MatchString(text) {
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "moving..."
+					// TODO: implement: move the piece.
 				} else {
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "invalid command"
 				}
 			}
+			////////////////////////////////////////////////////////////
+			// END TODO: let input be handled by a module called 'chessctrl'.
+			////////////////////////////////////////////////////////////
+
 		case tea.KeyCtrlC, tea.KeyEsc:
 			output = "You quit!"
 			return m, tea.Quit
