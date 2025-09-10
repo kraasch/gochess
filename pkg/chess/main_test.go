@@ -35,7 +35,7 @@ var suites = []TestSuite{
 			board := in.inputArr[0]
 			format := in.inputArr[1]
 			out = Format(board, format)
-			return
+			return out
 		},
 		tests: []TestList{
 			{
@@ -73,7 +73,7 @@ var suites = []TestSuite{
 		testingFunction: func(in TestList) (out string) {
 			inputValue := in.inputArr[0]
 			out = Color(start, inputValue)
-			return
+			return out
 		},
 		tests: []TestList{
 			{
@@ -117,7 +117,7 @@ var suites = []TestSuite{
 	{
 		testingFunction: func(in TestList) (out string) {
 			out = ChessBoard()
-			return
+			return out
 		},
 		tests: []TestList{
 			{
