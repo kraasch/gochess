@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+type Chessboard struct {
+	Board string
+}
+
 const (
 	// from https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
 	// ♔♕♖♗♘♙
@@ -94,10 +98,10 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
-func ChessBoard() string {
+func NewBoard() Chessboard {
 	str := Format(start, "filled") // TODO: add this as the inner part of board2.
 	str = Color(str, "entire")
-	return str
+	return Chessboard{str}
 }
 
 func Color(in, mode string) string {

@@ -16,7 +16,7 @@ import (
 	// basics.
 
 	// local packages.
-	engine "github.com/kraasch/gochess/pkg/chess"
+	chess "github.com/kraasch/gochess/pkg/chess"
 )
 
 var (
@@ -40,6 +40,7 @@ type model struct {
 	width     int
 	height    int
 	textInput textinput.Model
+	cb        chess.Chessboard
 	// err       error // TODO: remove later.
 }
 
@@ -118,7 +119,7 @@ func (m model) View() string {
 	var str string
 	// if verbose { // TODO: implement flags.
 	// }
-	str = engine.ChessBoard()
+	str = m.cb.Board
 	str = styleBox.Render(str)
 	str += NL + "  " + m.textInput.View()
 	str = lip.Place(m.width, m.height, lip.Center, lip.Center, str)
@@ -138,8 +139,11 @@ func main() {
 	ti.CharLimit = 156         // standard example.
 	ti.Width = 20              // standard example.
 
+	// add a chess board.
+	cb := chess.NewBoard()
+
 	// init model.
-	m := model{0, 0, ti}
+	m := model{0, 0, ti, cb}
 
 	// start bubbletea.
 	if _, err := tea.NewProgram(m, tea.WithAltScreen()).Run(); err != nil {

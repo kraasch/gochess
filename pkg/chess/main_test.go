@@ -112,11 +112,12 @@ var suites = []TestSuite{
 	},
 
 	/*
-	 * Test for the function ChessBoard -- for creating a chessboard.
+	 * Test for a basic ChessBoard.
 	 */
 	{
-		testingFunction: func(in TestList) (out string) {
-			out = ChessBoard()
+		testingFunction: func(in TestList) string {
+			cb := NewBoard()
+			out := cb.Board
 			return out
 		},
 		tests: []TestList{
@@ -138,6 +139,35 @@ var suites = []TestSuite{
 			},
 		},
 	},
+
+	// /*
+	//  * Test for a more complicated ChessBoard()
+	//  */
+	// {
+	// 	testingFunction: func(in TestList) (out string) {
+	// 		cb = ChessBoard()
+	// 		out = cb.GetString()
+	// 		return out
+	// 	},
+	// 	tests: []TestList{
+	// 		{
+	// 			testName: "create-full-board_simple-board_00",
+	// 			isMulti:  false,
+	// 			inputArr: []string{"color"},
+	// 			expectedValue: // this comment prevents start of string literal here.
+	// 			"   a b c d e f g h  " + NL +
+	// 				"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
+	// 				"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+	// 				"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+	// 				"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
+	// 				"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
+	// 				"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
+	// 				"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
+	// 				"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+	// 				"   a b c d e f g h  ",
+	// 		},
+	// 	},
+	// },
 }
 
 func TestAll(t *testing.T) {
