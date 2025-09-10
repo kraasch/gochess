@@ -5,7 +5,24 @@ import (
 )
 
 type Chessboard struct {
-	Board string
+	Board   string
+	Flipped bool
+}
+
+func (cb *Chessboard) Flip() {
+	cb.Flipped = true
+}
+
+func (cb *Chessboard) Unflip() {
+	cb.Flipped = false
+}
+
+func (cb *Chessboard) Display() string {
+	if cb.Flipped {
+		return flipped0
+	} else {
+		return board3
+	}
 }
 
 const (
@@ -67,6 +84,16 @@ const (
 		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
 		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
+	flipped0 = "   h g f e d c b a  " + NL2 +
+		"1 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♚" + BW + " ♛" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 1" + NL2 +
+		"2 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 2" + NL2 +
+		"3 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 3" + NL2 +
+		"4 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 4" + NL2 +
+		"5 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 5" + NL2 +
+		"6 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 6" + NL2 +
+		"7 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 7" + NL2 +
+		"8 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♔" + BB + " ♕" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 8" + NL2 +
+		"   h g f e d c b a  "
 )
 
 func Format(inputBoard, format string) string {
@@ -101,7 +128,7 @@ func Format(inputBoard, format string) string {
 func NewBoard() Chessboard {
 	str := Format(start, "filled") // TODO: add this as the inner part of board2.
 	str = Color(str, "entire")
-	return Chessboard{str}
+	return Chessboard{str, false}
 }
 
 func Color(in, mode string) string {

@@ -112,7 +112,7 @@ var suites = []TestSuite{
 	},
 
 	/*
-	 * Test for a basic ChessBoard.
+	 * Test for a basic Chessboard.
 	 */
 	{
 		testingFunction: func(in TestList) string {
@@ -140,34 +140,66 @@ var suites = []TestSuite{
 		},
 	},
 
-	// /*
-	//  * Test for a more complicated ChessBoard()
-	//  */
-	// {
-	// 	testingFunction: func(in TestList) (out string) {
-	// 		cb = ChessBoard()
-	// 		out = cb.GetString()
-	// 		return out
-	// 	},
-	// 	tests: []TestList{
-	// 		{
-	// 			testName: "create-full-board_simple-board_00",
-	// 			isMulti:  false,
-	// 			inputArr: []string{"color"},
-	// 			expectedValue: // this comment prevents start of string literal here.
-	// 			"   a b c d e f g h  " + NL +
-	// 				"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
-	// 				"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
-	// 				"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
-	// 				"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
-	// 				"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
-	// 				"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
-	// 				"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
-	// 				"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
-	// 				"   a b c d e f g h  ",
-	// 		},
-	// 	},
-	// },
+	/*
+	 * Test for more complicated Chessboard (Display, Flip)
+	 */
+	{
+		testingFunction: func(in TestList) string {
+			cb := NewBoard()
+			cb.Flip()
+			out := cb.Display()
+			return out
+		},
+		tests: []TestList{
+			{
+				testName: "create-full-board_complex-board_flip_00",
+				isMulti:  false,
+				inputArr: []string{"color"},
+				expectedValue: // this comment prevents start of string literal here.
+				"   h g f e d c b a  " + NL +
+					"1 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♚" + BW + " ♛" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 1" + NL +
+					"2 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 2" + NL +
+					"3 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 3" + NL +
+					"4 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 4" + NL +
+					"5 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 5" + NL +
+					"6 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 6" + NL +
+					"7 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 7" + NL +
+					"8 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♔" + BB + " ♕" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 8" + NL +
+					"   h g f e d c b a  ",
+			},
+		},
+	},
+
+	/*
+	 * Test for more complicated Chessboard (Display, Unflip)
+	 */
+	{
+		testingFunction: func(in TestList) string {
+			cb := NewBoard()
+			cb.Flip()
+			cb.Unflip()
+			out := cb.Display()
+			return out
+		},
+		tests: []TestList{
+			{
+				testName: "create-full-board_complex-board_unflip_00",
+				isMulti:  false,
+				inputArr: []string{"color"},
+				expectedValue: // this comment prevents start of string literal here.
+				"   a b c d e f g h  " + NL +
+					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
+					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
+					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
+					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
+					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
+					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"   a b c d e f g h  ",
+			},
+		},
+	},
 }
 
 func TestAll(t *testing.T) {
