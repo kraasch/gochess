@@ -1,4 +1,12 @@
 
+test_short:
+	@echo '-------------------'
+	@echo 'RUN GO TEST SUMMARY'
+	@echo '-------------------'
+	@go clean -testcache
+	@go test -v ./... | grep -E '^(ok|FAIL)'
+	@echo '-------------------'
+
 test:
 	go clean -testcache
 	go test -v ./...
