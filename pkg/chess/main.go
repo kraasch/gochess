@@ -9,12 +9,12 @@ const (
 	// ♔♕♖♗♘♙
 	// ♚♛♜♝♞♟
 	// 🨀🨁🨂🨃🨄🨅🨆🨇🨈🨉🨊🨋🨌🨍🨎🨏🨐🨑🨒🨓🨔🨕🨖🨗🨘🨙🨚🨛🨜🨝🨞🨟🨠🨡🨢🨣🨤🨥🨦🨧🨨🨩🨪🨫🨬🨭🨮🨯🨰🨱🨲🨳🨴🨵🨶🨷🨸🨹🨺🨻🨼🨽🨾🨿🩀🩁🩂🩃🩄🩅🩆🩇🩈🩉🩊🩋🩌🩍🩎🩏🩐🩑🩒🩓
-	PW    = "\x1b[0;36m" // PW = player white, ANSI color.
-	PB    = "\x1b[0;31m" // PB = player black, ANSI color.
-	BW    = "\x1b[47m"   // BW = board white, ANSI color.
-	BB    = "\x1b[40m"   // BB = board black, ANSI color.
-	N     = "\x1b[0m"    // ANSI clear formatting.
-	NL2   = "\n"         // TODO: generalize end-of-line sequence.
+	PW    = "\x1b[38;5;244m" // PW = player white, ANSI color (light gray).
+	PB    = "\x1b[38;5;236m" // PB = player black, ANSI color (dark gray).
+	BW    = "\x1b[47m"       // BW = board white, ANSI color (white).
+	BB    = "\x1b[40m"       // BB = board black, ANSI color (black).
+	N     = "\x1b[0m"        // ANSI clear formatting.
+	NL2   = "\n"             // TODO: generalize end-of-line sequence.
 	start = "rnbqkbnr" + NL2 +
 		"pppppppp" + NL2 +
 		"        " + NL2 +
@@ -44,23 +44,27 @@ const (
 		"1 " + BB + " R" + BW + " N" + BB + " B" + BW + " Q" + BB + " K" + BW + " B" + BB + " N" + BW + " R" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
 	board3 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
-		"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL2 +
-		"7 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL2 +
+		"8 " + PB + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL2 +
+		"7 " + PB + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL2 +
 		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
 		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
 		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
 		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
-		"2 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 2" + NL2 +
-		"1 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♕" + BB + " ♔" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 1" + NL2 +
+		"2 " + PW + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
+		"1 " + PW + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
 )
 
 func Format(inputBoard, format string) string {
 	str := ""
-	if format == "pieces" {
+	str1 := "KQRBNPkqrbnp"
+	str2 := ""
+	str2 = "♔♕♖♗♘♙♚♛♜♝♞♟"
+	if format == "filled" {
+		str2 = "♚♛♜♝♞♟♚♛♜♝♞♟"
+	}
+	if format == "filled" || format == "pieces" {
 		// Make "KQRBNPkqrbnp" into "♚♛♜♝♞♟♔♕♖♗♘♙".
-		str1 := "KQRBNPkqrbnp"
-		str2 := "♔♕♖♗♘♙♚♛♜♝♞♟"
 		runes := []rune(str2)
 		// loop over every character and replace.
 		for _, currentRune := range inputBoard {
@@ -81,7 +85,7 @@ func Format(inputBoard, format string) string {
 }
 
 func ChessBoard() string {
-	str := Format(start, "pieces") // TODO: add this as the inner part of board2.
+	str := Format(start, "filled") // TODO: add this as the inner part of board2.
 	str = Color(str, "entire")
 	return str
 }
