@@ -12,12 +12,12 @@ type Chessboard struct {
 }
 
 func NewBoardNew() Chessboard { // TODO: make the only contructur. (and rename it of course)
-	str := Format(start, "filled") // TODO: add this as the inner part of board2.
+	str := Format(start, "filled")
 	return Chessboard{str, false}
 }
 
 func NewBoard() Chessboard { // TODO: remove this.
-	str := Format(start, "filled") // TODO: add this as the inner part of board2.
+	str := Format(start, "filled")
 	str = Color(str, "entire")
 	return Chessboard{str, false}
 }
@@ -101,7 +101,7 @@ const (
 		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
 		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
-	flipped0 = "   h g f e d c b a  " + NL2 +
+	flipped0 = "   h g f e d c b a  " + NL2 + // TODO: remove this variable.
 		"1 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♚" + BW + " ♛" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 1" + NL2 +
 		"2 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 2" + NL2 +
 		"3 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 3" + NL2 +

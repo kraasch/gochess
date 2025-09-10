@@ -40,7 +40,7 @@ var suites = []TestSuite{
 		},
 		tests: []TestList{
 			{
-				testName: "controller_move_one-move_00",
+				testName: "controller_error_00",
 				isMulti:  true,
 				inputArr: []string{
 					"rnbqkbnr" + NL +
@@ -188,7 +188,7 @@ var suites = []TestSuite{
 			},
 			{
 				// turn in to these: ♔♕♖♗♘♙ ♚♛♜♝♞♟
-				testName: "controller_flip_00",
+				testName: "controller_flip_01",
 				isMulti:  true,
 				inputArr: []string{
 					"rnb     " + NL +

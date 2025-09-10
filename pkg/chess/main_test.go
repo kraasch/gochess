@@ -209,13 +209,14 @@ var suites = []TestSuite{
 			cb := NewBoardNew()
 			cb.Move("a7a6")
 			out := cb.Display()
+			// fmt.Printf("\n%s\n\n", cb.Board) // TODO: remove this line.
 			return out
 		},
 		tests: []TestList{
 			{
 				testName: "create-full-board_complex-board_move_00",
 				isMulti:  true,
-				inputArr: []string{"color"},
+				inputArr: []string{},
 				expectedValue: // this comment prevents start of string literal here.
 				"   a b c d e f g h  " + NL +
 					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +

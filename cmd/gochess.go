@@ -20,6 +20,7 @@ import (
 )
 
 var (
+	bbbb = "xxx" // TODO: remove temp test variable later.
 	// return value.
 	output = ""
 	// flags.
@@ -58,7 +59,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		switch msg.Type {
 		case tea.KeyEnter:
-			text := m.textInput.Value()
+			moveInput := m.textInput.Value()
 
 			////////////////////////////////////////////////////////////
 			// BEGIN
@@ -67,7 +68,13 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// TODO: flip results in flipped board.
 			// TODO: move results in change (test different options: castling, en-passant, etc)
 			////////////////////////////////////////////////////////////
-			switch text {
+			switch moveInput {
+			case "t", "test": // TODO: remove later. this is for running tests.
+				m.cb.Move("a7a6")
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "running test."
+				bbbb = m.cb.Board
+				return m, tea.Quit
 			case "s", "save":
 				// TODO: implement.
 				m.textInput.SetValue("")
@@ -88,12 +95,13 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, tea.Quit
 			default:
 				// string is not a baked command so it is a move command or an invalid command.
-				pattern := `^[a-h][1-8][a-h][1-8]$`
+				pattern := `^[a-h][1-8][a-h][1-8]$` // TODO: make this internal of the CHESSCTRL class.
 				regex := regexp.MustCompile(pattern)
-				if regex.MatchString(text) {
+				if regex.MatchString(moveInput) {
+					m.cb.Move(moveInput) // TODO: implement: move the piece.
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "moving..."
-					// TODO: implement: move the piece.
+					return m, nil // NOTE: this should update the view.
 				} else {
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "invalid command"
@@ -119,7 +127,7 @@ func (m model) View() string {
 	var str string
 	// if verbose { // TODO: implement flags.
 	// }
-	str = m.cb.Board
+	str = m.cb.Display()
 	str = styleBox.Render(str)
 	str += NL + "  " + m.textInput.View()
 	str = lip.Place(m.width, m.height, lip.Center, lip.Center, str)
@@ -140,7 +148,7 @@ func main() {
 	ti.Width = 20              // standard example.
 
 	// add a chess board.
-	cb := chess.NewBoard()
+	cb := chess.NewBoardNew()
 
 	// init model.
 	m := model{0, 0, ti, cb}
@@ -155,4 +163,6 @@ func main() {
 	if !suppress {
 		fmt.Println(output)
 	}
+
+	fmt.Printf("\n%s\n\n", bbbb) // TODO: remove this line.
 } // fin.
