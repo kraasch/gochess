@@ -73,7 +73,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.cb.Move("h7h6")
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "running test."
-				bbbb = m.cb.Board
+				bbbb = m.cb.Display()
 				return m, nil // NOTE: this should update the view.
 			case "s", "save":
 				// TODO: implement.

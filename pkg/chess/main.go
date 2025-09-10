@@ -143,7 +143,7 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
-func Color(in, mode string) string {
+func Color(in, mode string) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
 	if mode == "standard" {
 		str = fmt.Sprintf("%v", board)
