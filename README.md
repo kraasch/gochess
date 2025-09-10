@@ -84,7 +84,7 @@ import (
   "github.com/kraasch/gochess"
 )
 
-gochess.DoSomething("Hello")
+gochess.ChessBoard()
 ```
 
 ## Feedback
