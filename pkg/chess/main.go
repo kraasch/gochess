@@ -44,14 +44,14 @@ const (
 		"1 " + BB + " R" + BW + " N" + BB + " B" + BW + " Q" + BB + " K" + BW + " B" + BB + " N" + BW + " R" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
 	board3 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
-		"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL2 +
-		"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL2 +
+		"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL2 +
+		"7 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL2 +
 		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
 		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
 		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
 		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
-		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
-		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
+		"2 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 2" + NL2 +
+		"1 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♕" + BB + " ♔" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 1" + NL2 +
 		"   a b c d e f g h  "
 )
 
@@ -60,7 +60,7 @@ func Format(inputBoard, format string) string {
 	if format == "pieces" {
 		// Make "KQRBNPkqrbnp" into "♚♛♜♝♞♟♔♕♖♗♘♙".
 		str1 := "KQRBNPkqrbnp"
-		str2 := "♚♛♜♝♞♟♔♕♖♗♘♙"
+		str2 := "♔♕♖♗♘♙♚♛♜♝♞♟"
 		runes := []rune(str2)
 		// loop over every character and replace.
 		for _, currentRune := range inputBoard {
