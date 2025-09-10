@@ -4,6 +4,10 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"regexp"
+
+	// for making a text prompt.
+	"github.com/charmbracelet/bubbles/textinput"
 
 	// for making a nice centred box.
 	tea "github.com/charmbracelet/bubbletea"
@@ -25,15 +29,23 @@ var (
 	styleBox = lip.NewStyle().
 			BorderStyle(lip.NormalBorder()).
 			BorderForeground(lip.Color("56"))
+	NL = fmt.Sprintln()
 )
 
+// type ( // TODO: remove later.
+// 	errMsg error // TODO: remove later.
+// ) // TODO: remove later.
+
 type model struct {
-	width  int
-	height int
+	width     int
+	height    int
+	textInput textinput.Model
+	// err       error // TODO: remove later.
 }
 
 func (m model) Init() tea.Cmd {
-	return func() tea.Msg { return nil }
+	// return func() tea.Msg { return nil } // This line does nothing.
+	return textinput.Blink
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -43,12 +55,37 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.width = msg.Width
 		m.height = msg.Height
 	case tea.KeyMsg:
-		switch msg.String() {
-		case "q":
-			output = "You quit on me!"
+		switch msg.Type {
+		case tea.KeyEnter:
+			text := m.textInput.Value()
+			switch text {
+			case "h", "help":
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "move: a7a6 quit: q"
+			case "q", "quit":
+				output = "You quit (by command)!"
+				return m, tea.Quit
+			default:
+				// string is not a baked command so it is a move command or an invalid command.
+				pattern := `^[a-h][1-8][a-h][1-8]$`
+				regex := regexp.MustCompile(pattern)
+				if regex.MatchString(text) {
+					m.textInput.SetValue("")
+					m.textInput.Placeholder = "moving..."
+				} else {
+					m.textInput.SetValue("")
+					m.textInput.Placeholder = "invalid command"
+				}
+			}
+		case tea.KeyCtrlC, tea.KeyEsc:
+			output = "You quit!"
 			return m, tea.Quit
 		}
+		// case errMsg:     // TODO: remove later.
+		// 	m.err = msg     // TODO: remove later.
+		// 	return m, nil   // TODO: remove later.
 	}
+	m.textInput, cmd = m.textInput.Update(msg)
 	return m, cmd
 }
 
@@ -58,7 +95,9 @@ func (m model) View() string {
 	// }
 	str = engine.ChessBoard()
 	str = styleBox.Render(str)
-	return lip.Place(m.width, m.height, lip.Center, lip.Center, str)
+	str += NL + "  " + m.textInput.View()
+	str = lip.Place(m.width, m.height, lip.Center, lip.Center, str)
+	return str
 }
 
 func main() {
@@ -67,8 +106,15 @@ func main() {
 	flag.BoolVar(&suppress, "suppress", false, "Print nothing")
 	flag.Parse()
 
+	// make a new text input.
+	ti := textinput.New()      // standard example.
+	ti.Placeholder = "command" // standard example.
+	ti.Focus()                 // standard example.
+	ti.CharLimit = 156         // standard example.
+	ti.Width = 20              // standard example.
+
 	// init model.
-	m := model{0, 0}
+	m := model{0, 0, ti}
 
 	// start bubbletea.
 	if _, err := tea.NewProgram(m, tea.WithAltScreen()).Run(); err != nil {
