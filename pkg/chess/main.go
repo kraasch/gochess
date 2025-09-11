@@ -133,23 +133,20 @@ func surround(s, headerFooter string, flipped bool) string {
 	return res
 }
 
-func flipLines(s string) string {
-	lines := strings.Split(s, "\n")
-	for i, line := range lines {
-		lines[i] = reverseString(line)
+// Duplicates a string and reverses its bytes.
+// NOTE: only works if there is no final line break.
+func rotate(s string) string {
+	// Convert string to byte slice for in-place manipulation.
+	bytes := []byte(s)
+	length := len(bytes)
+	// Create a new byte slice to hold the reversed string.
+	reversed := make([]byte, length)
+	// Loop backward over the original bytes.
+	for i := 0; i < length; i++ {
+		reversed[i] = bytes[length-1-i]
 	}
-	return strings.Join(lines, "\n")
-}
-
-func reverseString(s string) string {
-	runes := []rune(s)
-	left, right := 0, len(runes)-1
-	for left < right {
-		runes[left], runes[right] = runes[right], runes[left]
-		left++
-		right--
-	}
-	return string(runes)
+	// Convert the reversed byte slice back to string.
+	return string(reversed)
 }
 
 func Color(in, mode, format string, flipped bool) string { // TODO: IMPLEMENT THIS NEXT.
@@ -166,7 +163,7 @@ func Color(in, mode, format string, flipped bool) string { // TODO: IMPLEMENT TH
 		wide = "   h g f e d c b a  "
 		replacable = "   h g f e d c z a  " // Hacky string with z instead of b.
 		// flip the inner board too.
-		in = flipLines(in)
+		in = rotate(in)
 	}
 	if mode == "standard" {
 		str = surround(in, narrow, flipped)
