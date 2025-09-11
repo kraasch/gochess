@@ -69,6 +69,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// TODO: flip results in flipped board.
 			// TODO: move results in change (test different options: castling, en-passant, etc)
 			////////////////////////////////////////////////////////////
+
+			// TODO: make this block internal of the CHESSCTRL class.
 			pattern0 := `^insert [rnbqkpRNBQKP][a-h][1-8]$` // TODO: make this internal of the CHESSCTRL class.
 			pattern1 := `^i [rnbqkpRNBQKP][a-h][1-8]$`      // TODO: make this internal of the CHESSCTRL class.
 			pattern2 := `^insert [a-h][1-8]$`               // TODO: make this internal of the CHESSCTRL class.
@@ -90,6 +92,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 
 			switch moveInput {
+
 			// TODO: implement these.
 			case "s", "save":
 				// TODO: implement.
@@ -99,10 +102,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// TODO: implement.
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "implement: load"
-			case "f", "flip":
-				// TODO: implement: flip the view.
-				m.textInput.SetValue("")
-				m.textInput.Placeholder = "implement: flip"
 			case "u", "undo":
 				// TODO: implement: undo the view.
 				m.textInput.SetValue("")
@@ -112,6 +111,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "implement: redo"
 
+			case "f", "flip":
+				m.cb.Flipped = !m.cb.Flipped
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "flip"
 			case "h", "help":
 				m.textInput.SetValue("")
 				if toggleHelp {
@@ -125,6 +128,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				output = "You quit (by command)!"
 				return m, tea.Quit
 			default:
+				// TODO: make this stuff internal of the CHESSCTRL class.
 				// string is not a baked command so it is a move command or an invalid command.
 				pattern := `^[a-h][1-8][a-h][1-8]$` // TODO: make this internal of the CHESSCTRL class.
 				regex := regexp.MustCompile(pattern)
