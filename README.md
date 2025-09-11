@@ -7,6 +7,12 @@
   <img src="./resources/example.gif" width="300"/>
 </p>
 
+The board can be flipped with the flip command.
+
+<p align="center">
+  <img src="./resources/example.png" width="300"/>
+</p>
+
 ## Features
 
 List of features
@@ -17,13 +23,13 @@ List of features
     - [X] implement CLI foreground colors for pieces (in black and white).
     - [X] add capability to insert new pieces by the user.
     - [X] implement some sort of command to insert a new piece.
+    - [X] flip the sides of the board option.
 
 ## Tasks
 
 List of things to do
 
   - next.
-    - [ ] flip the sides of the board option.
     - [ ] action history (undo, redo).
   - style.
     - [ ] allow to set the color of pieces with CLI flags.
