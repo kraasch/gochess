@@ -21,6 +21,10 @@ List of things to do
 
   - next.
     - [ ] have a console to type commands in, ie `7a5a` to move local piece from field 7a to field 5a.
+    - [ ] implement promotion feature.
+      - [ ] add capability to insert new pieces by the user.
+      - [ ] implement some sort of command to insert a new piece.
+      - [ ] implement some sort of dialog in the TUI view.
   - features.
     - [ ] flip the sides of the board option.
     - [ ] undo history.
