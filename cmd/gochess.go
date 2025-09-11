@@ -30,6 +30,8 @@ var (
 			BorderStyle(lip.NormalBorder()).
 			BorderForeground(lip.Color("56"))
 	NL = fmt.Sprintln()
+	// makes it possible to show a two-line help in a one-line prompt.
+	toggleHelp = true
 )
 
 // type ( // TODO: remove later.
@@ -103,7 +105,13 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			case "h", "help":
 				m.textInput.SetValue("")
-				m.textInput.Placeholder = "move: a7a6 quit: q"
+				if toggleHelp {
+					m.textInput.Placeholder = "move, insert, quit"
+					toggleHelp = !toggleHelp
+				} else {
+					m.textInput.Placeholder = "'a7a6' 'i Qb5' 'q'"
+					toggleHelp = !toggleHelp
+				}
 			case "q", "quit":
 				output = "You quit (by command)!"
 				return m, tea.Quit
