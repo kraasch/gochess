@@ -63,16 +63,6 @@ const (
 		"        " + NL2 +
 		"PPPPPPPP" + NL2 +
 		"RNBQKBNR"
-	board2 = "   a b c d e f g h  " + NL2 + /// TODO: remove this variable.
-		"8 " + BW + " r" + BB + " n" + BW + " b" + BB + " q" + BW + " k" + BB + " b" + BW + " n" + BB + " r" + N + " 8" + NL2 +
-		"7 " + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + N + " 7" + NL2 +
-		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
-		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
-		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
-		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
-		"2 " + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + BW + " P" + BB + " P" + N + " 2" + NL2 +
-		"1 " + BB + " R" + BW + " N" + BB + " B" + BW + " Q" + BB + " K" + BW + " B" + BB + " N" + BW + " R" + N + " 1" + NL2 +
-		"   a b c d e f g h  "
 	board3 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
 		"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL2 +
 		"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL2 +
@@ -134,14 +124,37 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
-func Surround(s string) string {
+func insertSpacesAndColor(input string) string {
+	var builder strings.Builder
+	isEven := true
+	for _, ch := range input {
+		if ch == '\n' {
+			builder.WriteString(N)
+			builder.WriteRune(ch)
+			isEven = !isEven
+		} else {
+			if isEven {
+				builder.WriteString(BW)
+				isEven = false
+			} else {
+				builder.WriteString(BB)
+				isEven = true
+			}
+			builder.WriteRune(' ')
+			builder.WriteRune(ch)
+		}
+	}
+	builder.WriteString(N)
+	return builder.String()
+}
+
+func surround(s, headerFooter string) string {
 	res := ""
 	mid := ""
 	lines := strings.Split(s, "\n")
 	for i, line := range lines {
 		mid += fmt.Sprintf("%d %s %d\n", 8-i, line, 8-i)
 	}
-	headerFooter := "  abcdefgh  "
 	res += headerFooter + "\n"
 	res += mid
 	res += headerFooter
@@ -150,10 +163,13 @@ func Surround(s string) string {
 
 func Color(in, mode string) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
+	narrow := "  abcdefgh  "
+	wide := "   a b c d e f g h  "
 	if mode == "standard" {
-		str = Surround(in)
+		str = surround(in, narrow)
 	} else if mode == "color" {
-		str = fmt.Sprintf("%v", board2)
+		in = insertSpacesAndColor(in)
+		str = surround(in, wide)
 	} else if mode == "entire" {
 		str = fmt.Sprintf("%v", board3)
 	}
