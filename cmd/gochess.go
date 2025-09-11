@@ -73,7 +73,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.cb.Move("h7h6")
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "running test."
-				bbbb = m.cb.Display()
+				bbbb = m.cb.Display("entire", "filled")
 				return m, nil // NOTE: this should update the view.
 			case "s", "save":
 				// TODO: implement.
@@ -128,7 +128,7 @@ func (m model) View() string {
 	var str string
 	// if verbose { // TODO: implement flags.
 	// }
-	str = m.cb.Display()
+	str = m.cb.Display("entire", "filled")
 	str = styleBox.Render(str)
 	str += NL + "  " + m.textInput.View()
 	str = lip.Place(m.width, m.height, lip.Center, lip.Center, str)
@@ -149,7 +149,7 @@ func main() {
 	ti.Width = 20              // standard example.
 
 	// add a chess board.
-	cb := chess.NewBoardNew()
+	cb := chess.NewBoard()
 
 	// init model.
 	m := model{0, 0, ti, cb}

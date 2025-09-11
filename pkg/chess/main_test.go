@@ -115,7 +115,7 @@ var suites = []TestSuite{
 	{
 		testingFunction: func(in TestList) string {
 			cb := NewBoard()
-			out := cb.Board
+			out := cb.Display("entire", "pieces")
 			return out
 		},
 		tests: []TestList{
@@ -125,14 +125,14 @@ var suites = []TestSuite{
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.
 				"   a b c d e f g h  " + NL +
-					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
-					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+					"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL +
+					"7 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL +
 					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
 					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
 					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
 					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
-					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
-					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"2 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 2" + NL +
+					"1 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♕" + BB + " ♔" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 1" + NL +
 					"   a b c d e f g h  ",
 			},
 		},
@@ -145,7 +145,7 @@ var suites = []TestSuite{
 		testingFunction: func(in TestList) string {
 			cb := NewBoard()
 			cb.Flip()
-			out := cb.Display()
+			out := cb.Display("entire", "filled")
 			return out
 		},
 		tests: []TestList{
@@ -176,7 +176,7 @@ var suites = []TestSuite{
 			cb := NewBoard()
 			cb.Flip()
 			cb.Unflip()
-			out := cb.Display()
+			out := cb.Display("entire", "pieces")
 			return out
 		},
 		tests: []TestList{
@@ -186,14 +186,14 @@ var suites = []TestSuite{
 				inputArr: []string{"color"},
 				expectedValue: // this comment prevents start of string literal here.
 				"   a b c d e f g h  " + NL +
-					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
-					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
+					"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL +
+					"7 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL +
 					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
 					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
 					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
 					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
-					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
-					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"2 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 2" + NL +
+					"1 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♕" + BB + " ♔" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 1" + NL +
 					"   a b c d e f g h  ",
 			},
 		},
@@ -204,10 +204,9 @@ var suites = []TestSuite{
 	 */
 	{
 		testingFunction: func(in TestList) string {
-			cb := NewBoardNew()
+			cb := NewBoard()
 			cb.Move("a7a6")
-			out := cb.Display()
-			// fmt.Printf("\n%s\n\n", cb.Board) // TODO: remove this line.
+			out := cb.Display("entire", "pieces")
 			return out
 		},
 		tests: []TestList{
@@ -217,14 +216,14 @@ var suites = []TestSuite{
 				inputArr: []string{},
 				expectedValue: // this comment prevents start of string literal here.
 				"   a b c d e f g h  " + NL +
-					"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL +
-					"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL +
-					"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
+					"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL +
+					"7 " + BB + "  " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL +
+					"6 " + BW + " ♟" + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL +
 					"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL +
 					"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL +
 					"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL +
-					"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL +
-					"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL +
+					"2 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 2" + NL +
+					"1 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♕" + BB + " ♔" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 1" + NL +
 					"   a b c d e f g h  ",
 			},
 		},

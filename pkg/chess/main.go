@@ -12,13 +12,8 @@ type Chessboard struct {
 	Flipped bool
 }
 
-func NewBoardNew() Chessboard { // TODO: make the only contructur. (and rename it of course)
+func NewBoard() Chessboard {
 	return Chessboard{start, false}
-}
-
-func NewBoard() Chessboard { // TODO: remove this.
-	str := Color(start, "entire", "filled")
-	return Chessboard{str, false}
 }
 
 func (cb *Chessboard) Flip() {
@@ -29,11 +24,12 @@ func (cb *Chessboard) Unflip() {
 	cb.Flipped = false
 }
 
-func (cb *Chessboard) Display() string {
+func (cb *Chessboard) Display(mode, format string) string {
 	if cb.Flipped {
 		return flipped0
 	} else {
-		str := Color(cb.Board, "entire", "filled")
+		// str := Color(cb.Board, "entire", "filled")
+		str := Color(cb.Board, mode, format)
 		return str
 	}
 }
@@ -145,7 +141,7 @@ func Color(in, mode, format string) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
 	narrow := "  abcdefgh  "
 	wide := "   a b c d e f g h  "
-	replacable := "   a 0 c d e f g h  " // Hacky string with 0 instead of b.
+	replacable := "   a z c d e f g h  " // Hacky string with z instead of b.
 	if mode == "standard" {
 		str = surround(in, narrow)
 	} else if mode == "color" {
@@ -155,8 +151,8 @@ func Color(in, mode, format string) string { // TODO: IMPLEMENT THIS NEXT.
 		in = insertSpacesAndColor(in)
 		str = surround(in, replacable)
 		str = Format(str, format)
-		// Hacky function call, replacing all 0s with bs, so that bishops can be distinguished from the b in the coordinate label.
-		str = strings.ReplaceAll(str, "0", "b")
+		// Hacky function call, replacing all zs with bs, so that bishops can be distinguished from the b in the coordinate label.
+		str = strings.ReplaceAll(str, "z", "b")
 	}
 	return str
 }
