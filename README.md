@@ -60,6 +60,7 @@ List of ideas
   - add some sort off golang chess engine to deal with all the game logic.
     - [ ] for example: https://github.com/corentings/chess
     - [ ] for example: https://github.com/fdomig/gochess
+    - [ ] for example: https://github.com/alvaronaschez/simple-chess
 
 ## Installation
 
