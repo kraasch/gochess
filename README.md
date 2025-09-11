@@ -3,10 +3,8 @@
 
 ## Demo
 
-Demo picture:
-
 <p align="center">
-  <img src="./resources/example.png" width="300"/>
+  <img src="./resources/example.gif" width="300"/>
 </p>
 
 ## Features
