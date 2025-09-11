@@ -99,8 +99,15 @@ func apply(board *string, move string) {
 // }
 
 func applyInsert(board *string, insertion string) {
-	pieceCode := insertion[0:1]
-	destinationCode := insertion[1:3]
+	pieceCode := ""
+	destinationCode := ""
+	if len(insertion) == 3 {
+		pieceCode = insertion[0:1]
+		destinationCode = insertion[1:3]
+	} else if len(insertion) == 2 {
+		pieceCode = " "
+		destinationCode = insertion
+	}
 	upper := strings.ToUpper(destinationCode) // use upper case in order to subtract ASCII A = 65 from alphabetic coordinates.
 	da := int(upper[0]) - 65
 	dn, _ := strconv.Atoi(upper[1:2])

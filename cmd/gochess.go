@@ -71,12 +71,21 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			////////////////////////////////////////////////////////////
 			pattern0 := `^insert [rnbqkpRNBQKP][a-h][1-8]$` // TODO: make this internal of the CHESSCTRL class.
 			pattern1 := `^i [rnbqkpRNBQKP][a-h][1-8]$`      // TODO: make this internal of the CHESSCTRL class.
+			pattern2 := `^insert [a-h][1-8]$`               // TODO: make this internal of the CHESSCTRL class.
+			pattern3 := `^i [a-h][1-8]$`                    // TODO: make this internal of the CHESSCTRL class.
 			regex0 := regexp.MustCompile(pattern0)
 			regex1 := regexp.MustCompile(pattern1)
+			regex2 := regexp.MustCompile(pattern2)
+			regex3 := regexp.MustCompile(pattern3)
 			if regex0.MatchString(moveInput) || regex1.MatchString(moveInput) {
 				m.cb.Insert(moveInput[len(moveInput)-3:])
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "new piece..."
+				return m, nil
+			} else if regex2.MatchString(moveInput) || regex3.MatchString(moveInput) {
+				m.cb.Insert(moveInput[len(moveInput)-2:])
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "removing..."
 				return m, nil
 			}
 
