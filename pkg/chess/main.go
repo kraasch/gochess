@@ -25,13 +25,8 @@ func (cb *Chessboard) Unflip() {
 }
 
 func (cb *Chessboard) Display(mode, format string) string {
-	if cb.Flipped {
-		return flipped0
-	} else {
-		// str := Color(cb.Board, "entire", "filled")
-		str := Color(cb.Board, mode, format)
-		return str
-	}
+	str := Color(cb.Board, mode, format, cb.Flipped)
+	return str
 }
 
 func (cb *Chessboard) Move(move string) {
@@ -61,16 +56,6 @@ const (
 		"        " + NL2 +
 		"PPPPPPPP" + NL2 +
 		"RNBQKBNR"
-	flipped0 = "   h g f e d c b a  " + NL2 + // TODO: remove this variable.
-		"1 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♚" + BW + " ♛" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 1" + NL2 +
-		"2 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 2" + NL2 +
-		"3 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 3" + NL2 +
-		"4 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 4" + NL2 +
-		"5 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 5" + NL2 +
-		"6 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 6" + NL2 +
-		"7 " + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + N + " 7" + NL2 +
-		"8 " + BB + " ♖" + BW + " ♘" + BB + " ♗" + BW + " ♔" + BB + " ♕" + BW + " ♗" + BB + " ♘" + BW + " ♖" + N + " 8" + NL2 +
-		"   h g f e d c b a  "
 )
 
 func Format(inputBoard, format string) string {
@@ -83,7 +68,7 @@ func Format(inputBoard, format string) string {
 	if format == "filled" {
 		str2 = "♚♛♜♝♞♟♚♛♜♝♞♟"
 	}
-	if format == "filled" || format == "pieces" {
+	if format == "filled" || format == "pieces" { // TODO: remove these two options from the code, just let the function do its job once called independent from the string which is passed in.
 		// Make "KQRBNPkqrbnp" into "♚♛♜♝♞♟♔♕♖♗♘♙".
 		runes := []rune(str2)
 		// loop over every character and replace.
@@ -104,9 +89,12 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
-func insertSpacesAndColor(input string) string {
+func insertSpacesAndColor(input string, flipped bool) string {
 	var builder strings.Builder
 	isEven := true
+	if flipped { // if the board is flipped start with the other color initially.
+		isEven = !isEven
+	}
 	for _, ch := range input {
 		if ch == '\n' {
 			builder.WriteString(N)
@@ -128,12 +116,16 @@ func insertSpacesAndColor(input string) string {
 	return builder.String()
 }
 
-func surround(s, headerFooter string) string {
+func surround(s, headerFooter string, flipped bool) string {
 	res := ""
 	mid := ""
 	lines := strings.Split(s, "\n")
 	for i, line := range lines {
-		mid += fmt.Sprintf("%d %s %d\n", 8-i, line, 8-i)
+		if !flipped {
+			mid += fmt.Sprintf("%d %s %d\n", 8-i, line, 8-i)
+		} else {
+			mid += fmt.Sprintf("%d %s %d\n", i+1, line, i+1)
+		}
 	}
 	res += headerFooter + "\n"
 	res += mid
@@ -141,19 +133,49 @@ func surround(s, headerFooter string) string {
 	return res
 }
 
-func Color(in, mode, format string) string { // TODO: IMPLEMENT THIS NEXT.
+func flipLines(s string) string {
+	lines := strings.Split(s, "\n")
+	for i, line := range lines {
+		lines[i] = reverseString(line)
+	}
+	return strings.Join(lines, "\n")
+}
+
+func reverseString(s string) string {
+	runes := []rune(s)
+	left, right := 0, len(runes)-1
+	for left < right {
+		runes[left], runes[right] = runes[right], runes[left]
+		left++
+		right--
+	}
+	return string(runes)
+}
+
+func Color(in, mode, format string, flipped bool) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
-	narrow := "  abcdefgh  "
-	wide := "   a b c d e f g h  "
-	replacable := "   a z c d e f g h  " // Hacky string with z instead of b.
+	narrow := ""
+	wide := ""
+	replacable := "" // Hacky string with z instead of b.
+	if !flipped {
+		narrow = "  abcdefgh  "
+		wide = "   a b c d e f g h  "
+		replacable = "   a z c d e f g h  " // Hacky string with z instead of b.
+	} else {
+		narrow = "  hgfedcba  "
+		wide = "   h g f e d c b a  "
+		replacable = "   h g f e d c z a  " // Hacky string with z instead of b.
+		// flip the inner board too.
+		in = flipLines(in)
+	}
 	if mode == "standard" {
-		str = surround(in, narrow)
+		str = surround(in, narrow, flipped)
 	} else if mode == "color" {
-		in = insertSpacesAndColor(in)
-		str = surround(in, wide)
+		in = insertSpacesAndColor(in, flipped)
+		str = surround(in, wide, flipped)
 	} else if mode == "entire" {
-		in = insertSpacesAndColor(in)
-		str = surround(in, replacable)
+		in = insertSpacesAndColor(in, flipped)
+		str = surround(in, replacable, flipped)
 		str = Format(str, format)
 		// Hacky function call, replacing all zs with bs, so that bishops can be distinguished from the b in the coordinate label.
 		str = strings.ReplaceAll(str, "z", "b")
