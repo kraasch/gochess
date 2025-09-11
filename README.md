@@ -13,29 +13,25 @@ Demo picture:
 
 List of features
 
-  - [ ] xxx
+  - features.
+    - [X] have a console to type commands in, ie `7a5a` to move local piece from field 7a to field 5a.
+    - [X] implement CLI background color checkered board in black and white.
+    - [X] implement CLI foreground colors for pieces (in black and white).
+    - [X] add capability to insert new pieces by the user.
+    - [X] implement some sort of command to insert a new piece.
 
 ## Tasks
 
 List of things to do
 
   - next.
-    - [ ] have a console to type commands in, ie `7a5a` to move local piece from field 7a to field 5a.
-    - [ ] implement promotion feature.
-      - [ ] add capability to insert new pieces by the user.
-      - [ ] implement some sort of command to insert a new piece.
-      - [ ] implement some sort of dialog in the TUI view.
-  - features.
     - [ ] flip the sides of the board option.
-    - [ ] undo history.
+    - [ ] action history (undo, redo).
   - style.
+    - [ ] allow to set the color of pieces with CLI flags.
     - [ ] have a flag for **textual** mode: RNBQKBNR pppppppp
     - [ ] have a flag for **graphical** mode: RNBQKBNR pppppppp
-
-Done
-
-  - [X] implement CLI background color checkered board in black and white.
-  - [X] implement CLI foreground colors for pieces (in black and white).
+    - [ ] save and load games.
 
 List of ideas
 
