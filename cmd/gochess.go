@@ -140,7 +140,7 @@ func (m model) View() string {
 	var str string
 	// if verbose { // TODO: implement flags.
 	// }
-	str = m.cb.Display("entire", "filled")
+	str = m.cb.Display("entire", "pieces")
 	str = styleBox.Render(str)
 	str += NL + "  " + m.textInput.View()
 	str = lip.Place(m.width, m.height, lip.Center, lip.Center, str)
