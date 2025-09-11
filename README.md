@@ -57,6 +57,9 @@ List of ideas
     - [ ] have a option for turning on **attacked** mode: sallow castling through attacked squares.
     - [ ] have a option for turning off **en-passant** mode: disallow en-passants.
     - [ ] have a option for turning off **undos** mode: disallow undos.
+  - add some sort off golang chess engine to deal with all the game logic.
+    - [ ] for example: https://github.com/corentings/chess
+    - [ ] for example: https://github.com/fdomig/gochess
 
 ## Installation
 
@@ -85,11 +88,24 @@ Use the package:
 
 ```go
 import (
+  "fmt"
   "github.com/kraasch/gochess"
 )
 
-gochess.ChessBoard()
+cb := gochess.NewBoard()
+cb.Insert("pa6")
+cb.Insert("Qa7")
+cb.Insert("rh1")
+cb.Move("a7a6")
+cb.Insert("b8")
+out := cb.Display("entire", "pieces")
+fmt.Printf("%s", out)
 ```
+The above code results in the following CLI printout.
+
+<p align="center">
+  <img src="./resources/example3.png" width="300"/>
+</p>
 
 ## Feedback
 
