@@ -38,6 +38,10 @@ func (cb *Chessboard) Move(move string) {
 	ctrl.Move(&cb.Board, move)
 }
 
+func (cb *Chessboard) Insert(insertion string) {
+	ctrl.Insert(&cb.Board, insertion)
+}
+
 const (
 	// from https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
 	// ♔♕♖♗♘♙

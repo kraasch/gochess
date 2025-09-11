@@ -64,6 +64,10 @@ func validate(board *string, move string) bool {
 	return hasCorrectLength && followsRegex && hasPiece
 }
 
+func validateInsertion(board *string, insertion string) bool {
+	return true // TODO: implement.
+}
+
 func apply(board *string, move string) {
 	// origin = o, destination = d, alphabetic = a; numeric = n.
 	// a simple move instruction in chess follows the form:
@@ -80,14 +84,45 @@ func apply(board *string, move string) {
 	replaceCharAt(board, da, dn, origin)
 }
 
+// // NOTE: use later maybe.
+// func convertPieceCode() {
+// convert piece.
+// str1 := "KQRBNPkqrbnp"
+// str2 := "♔♕♖♗♘♙♚♛♜♝♞♟"
+// found := ""
+// for i, r := range str1 {
+// 	if r == rune(pieceCode[0]) {
+// 		found = str2[i : i+1]
+// 		break
+// 	}
+// }
+// }
+
+func applyInsert(board *string, insertion string) {
+	pieceCode := insertion[0:1]
+	destinationCode := insertion[1:3]
+	upper := strings.ToUpper(destinationCode) // use upper case in order to subtract ASCII A = 65 from alphabetic coordinates.
+	da := int(upper[0]) - 65
+	dn, _ := strconv.Atoi(upper[1:2])
+	dn = 7 - (dn - 1)
+	// replace destination with piece.
+	replaceCharAt(board, da, dn, pieceCode)
+}
+
 func Move(board *string, moves string) {
 	// TODO: Assumes moves are split by commas. (make tests).
 	movesArr := strings.Split(moves, ",")
 	for _, move := range movesArr {
 		if validate(board, move) {
-			// fmt.Printf("Run %d, move '%s'\n", i, move)
-			// fmt.Printf("-----------\n%s\n-----------\n", board)
 			apply(board, move)
 		}
+	}
+}
+
+func Insert(board *string, insertion string) {
+	// TODO: First char: Assumes insertion starts with one of "rnbqkpRNBQKP"
+	// TODO: Second and 3rd char: Assumes insertion ends with destination in the form of B1.
+	if validateInsertion(board, insertion) {
+		applyInsert(board, insertion)
 	}
 }
