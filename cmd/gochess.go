@@ -20,7 +20,6 @@ import (
 )
 
 var (
-	bbbb = "xxx" // TODO: remove temp test variable later.
 	// return value.
 	output = ""
 	// flags.
@@ -68,13 +67,19 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// TODO: flip results in flipped board.
 			// TODO: move results in change (test different options: castling, en-passant, etc)
 			////////////////////////////////////////////////////////////
-			switch moveInput {
-			case "t", "test": // TODO: remove later. this is for running tests.
-				m.cb.Move("h7h6")
+			pattern0 := `^insert [rnbqkpRNBQKP][a-h][1-8]$` // TODO: make this internal of the CHESSCTRL class.
+			pattern1 := `^i [rnbqkpRNBQKP][a-h][1-8]$`      // TODO: make this internal of the CHESSCTRL class.
+			regex0 := regexp.MustCompile(pattern0)
+			regex1 := regexp.MustCompile(pattern1)
+			if regex0.MatchString(moveInput) || regex1.MatchString(moveInput) {
+				m.cb.Insert(moveInput[len(moveInput)-3:])
 				m.textInput.SetValue("")
-				m.textInput.Placeholder = "running test."
-				bbbb = m.cb.Display("entire", "filled")
-				return m, nil // NOTE: this should update the view.
+				m.textInput.Placeholder = "new piece..."
+				return m, nil
+			}
+
+			switch moveInput {
+			// TODO: implement these.
 			case "s", "save":
 				// TODO: implement.
 				m.textInput.SetValue("")
@@ -87,6 +92,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// TODO: implement: flip the view.
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "implement: flip"
+			case "u", "undo":
+				// TODO: implement: undo the view.
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "implement: undo"
+			case "r", "redo":
+				// TODO: implement: redo the view.
+				m.textInput.SetValue("")
+				m.textInput.Placeholder = "implement: redo"
+
 			case "h", "help":
 				m.textInput.SetValue("")
 				m.textInput.Placeholder = "move: a7a6 quit: q"
@@ -101,8 +115,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.cb.Move(moveInput) // TODO: implement: move the piece.
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "moving..."
-					bbbb = m.cb.Board // TODO: remove.
-					return m, nil     // NOTE: this should update the view.
 				} else {
 					m.textInput.SetValue("")
 					m.textInput.Placeholder = "invalid command"
@@ -164,6 +176,4 @@ func main() {
 	if !suppress {
 		fmt.Println(output)
 	}
-
-	fmt.Printf("\n%s\n\n", bbbb) // TODO: remove this line.
 } // fin.
