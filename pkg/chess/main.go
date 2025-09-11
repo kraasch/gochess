@@ -17,8 +17,7 @@ func NewBoardNew() Chessboard { // TODO: make the only contructur. (and rename i
 }
 
 func NewBoard() Chessboard { // TODO: remove this.
-	str := Format(start, "filled")
-	str = Color(str, "entire")
+	str := Color(start, "entire", "filled")
 	return Chessboard{str, false}
 }
 
@@ -34,8 +33,7 @@ func (cb *Chessboard) Display() string {
 	if cb.Flipped {
 		return flipped0
 	} else {
-		str := Format(cb.Board, "filled")
-		str = Color(str, "entire")
+		str := Color(cb.Board, "entire", "filled")
 		return str
 	}
 }
@@ -63,26 +61,6 @@ const (
 		"        " + NL2 +
 		"PPPPPPPP" + NL2 +
 		"RNBQKBNR"
-	board3 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
-		"8 " + BW + " ♖" + BB + " ♘" + BW + " ♗" + BB + " ♕" + BW + " ♔" + BB + " ♗" + BW + " ♘" + BB + " ♖" + N + " 8" + NL2 +
-		"7 " + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + BB + " ♙" + BW + " ♙" + N + " 7" + NL2 +
-		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
-		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
-		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
-		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
-		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
-		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
-		"   a b c d e f g h  "
-	board4 = "   a b c d e f g h  " + NL2 + // TODO: remove this variable.
-		"8 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♛" + BW + " ♚" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 8" + NL2 +
-		"7 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 7" + NL2 +
-		"6 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 6" + NL2 +
-		"5 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 5" + NL2 +
-		"4 " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + N + " 4" + NL2 +
-		"3 " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + BB + "  " + BW + "  " + N + " 3" + NL2 +
-		"2 " + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + N + " 2" + NL2 +
-		"1 " + BB + " ♜" + BW + " ♞" + BB + " ♝" + BW + " ♛" + BB + " ♚" + BW + " ♝" + BB + " ♞" + BW + " ♜" + N + " 1" + NL2 +
-		"   a b c d e f g h  "
 	flipped0 = "   h g f e d c b a  " + NL2 + // TODO: remove this variable.
 		"1 " + BW + " ♜" + BB + " ♞" + BW + " ♝" + BB + " ♚" + BW + " ♛" + BB + " ♝" + BW + " ♞" + BB + " ♜" + N + " 1" + NL2 +
 		"2 " + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + BB + " ♟" + BW + " ♟" + N + " 2" + NL2 +
@@ -96,10 +74,12 @@ const (
 )
 
 func Format(inputBoard, format string) string {
+	if format == "none" {
+		return inputBoard
+	}
 	str := ""
 	str1 := "KQRBNPkqrbnp"
-	str2 := ""
-	str2 = "♔♕♖♗♘♙♚♛♜♝♞♟"
+	str2 := "♔♕♖♗♘♙♚♛♜♝♞♟"
 	if format == "filled" {
 		str2 = "♚♛♜♝♞♟♚♛♜♝♞♟"
 	}
@@ -161,17 +141,22 @@ func surround(s, headerFooter string) string {
 	return res
 }
 
-func Color(in, mode string) string { // TODO: IMPLEMENT THIS NEXT.
+func Color(in, mode, format string) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
 	narrow := "  abcdefgh  "
 	wide := "   a b c d e f g h  "
+	replacable := "   a 0 c d e f g h  " // Hacky string with 0 instead of b.
 	if mode == "standard" {
 		str = surround(in, narrow)
 	} else if mode == "color" {
 		in = insertSpacesAndColor(in)
 		str = surround(in, wide)
 	} else if mode == "entire" {
-		str = fmt.Sprintf("%v", board3)
+		in = insertSpacesAndColor(in)
+		str = surround(in, replacable)
+		str = Format(str, format)
+		// Hacky function call, replacing all 0s with bs, so that bishops can be distinguished from the b in the coordinate label.
+		str = strings.ReplaceAll(str, "0", "b")
 	}
 	return str
 }

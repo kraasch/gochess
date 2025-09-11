@@ -33,8 +33,7 @@ var suites = []TestSuite{
 	{
 		testingFunction: func(in TestList) (out string) {
 			board := in.inputArr[0]
-			format := in.inputArr[1]
-			out = Format(board, format)
+			out = Format(board, "pieces")
 			return out
 		},
 		tests: []TestList{
@@ -51,7 +50,6 @@ var suites = []TestSuite{
 						"        " + NL +
 						"PPPPPPPP" + NL +
 						"RNBQKBNR",
-					"pieces",
 				},
 				expectedValue: // this comment prevents start of string literal here.
 				"♜♞♝♛♚♝♞♜" + NL +
@@ -72,7 +70,7 @@ var suites = []TestSuite{
 	{
 		testingFunction: func(in TestList) (out string) {
 			inputValue := in.inputArr[0]
-			out = Color(start, inputValue)
+			out = Color(start, inputValue, "none")
 			return out
 		},
 		tests: []TestList{
@@ -215,7 +213,7 @@ var suites = []TestSuite{
 		tests: []TestList{
 			{
 				testName: "create-full-board_complex-board_move_00",
-				isMulti:  true,
+				isMulti:  false,
 				inputArr: []string{},
 				expectedValue: // this comment prevents start of string literal here.
 				"   a b c d e f g h  " + NL +
