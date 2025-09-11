@@ -2,6 +2,7 @@ package chess
 
 import (
 	"fmt"
+	"strings"
 
 	ctrl "github.com/kraasch/gochess/pkg/chessctrl" // TODO: import control module.
 )
@@ -62,16 +63,6 @@ const (
 		"        " + NL2 +
 		"PPPPPPPP" + NL2 +
 		"RNBQKBNR"
-	board = "  abcdefgh  " + NL2 + /// TODO: remove this variable.
-		"8 rnbqkbnr 8" + NL2 +
-		"7 pppppppp 7" + NL2 +
-		"6          6" + NL2 +
-		"5          5" + NL2 +
-		"4          4" + NL2 +
-		"3          3" + NL2 +
-		"2 PPPPPPPP 2" + NL2 +
-		"1 RNBQKBNR 1" + NL2 +
-		"  abcdefgh  "
 	board2 = "   a b c d e f g h  " + NL2 + /// TODO: remove this variable.
 		"8 " + BW + " r" + BB + " n" + BW + " b" + BB + " q" + BW + " k" + BB + " b" + BW + " n" + BB + " r" + N + " 8" + NL2 +
 		"7 " + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + BB + " p" + BW + " p" + N + " 7" + NL2 +
@@ -143,10 +134,24 @@ func Format(inputBoard, format string) string {
 	return str
 }
 
+func Surround(s string) string {
+	res := ""
+	mid := ""
+	lines := strings.Split(s, "\n")
+	for i, line := range lines {
+		mid += fmt.Sprintf("%d %s %d\n", 8-i, line, 8-i)
+	}
+	headerFooter := "  abcdefgh  "
+	res += headerFooter + "\n"
+	res += mid
+	res += headerFooter
+	return res
+}
+
 func Color(in, mode string) string { // TODO: IMPLEMENT THIS NEXT.
 	str := ""
 	if mode == "standard" {
-		str = fmt.Sprintf("%v", board)
+		str = Surround(in)
 	} else if mode == "color" {
 		str = fmt.Sprintf("%v", board2)
 	} else if mode == "entire" {
